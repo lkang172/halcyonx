@@ -6,14 +6,14 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.CommandLineRunner;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
-import run.Location;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import run.Run;
+import com.github.lkang172.run.Location;
+import com.github.lkang172.run.Run;
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "com.github.lkang172")
 public class HalcyonxApplication {
 
 	private static final Logger log = LoggerFactory.getLogger(HalcyonxApplication.class);

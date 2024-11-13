@@ -1,4 +1,4 @@
-package run;
+package com.github.lkang172.run;
 
 import java.time.LocalDateTime;
 
