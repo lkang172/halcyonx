@@ -1,5 +1,6 @@
 package com.github.lkang172.run;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,25 +15,14 @@ import java.util.List;
 @RestController
 public class RunController {
 
-    private List<Run> runs = new ArrayList<>();
+    private final RunRepository runRepository;
 
+    public RunController(RunRepository runRepository) {
+        this.runRepository = runRepository;
+    }
+
+    @GetMapping("/api/runs")
     List<Run> findAll() {
-        return runs;
+        return null;
     }
-
-    @PostConstruct
-    private void init() {
-        runs.add(new Run(1, "Morning run", LocalDateTime.now(), LocalDateTime.now().plus(30, ChronoUnit.MINUTES), 3,
-                Location.INDOOR));
-        runs.add(new Run(2, "Morning run", LocalDateTime.now(), LocalDateTime.now().plus(30, ChronoUnit.MINUTES), 3,
-                Location.INDOOR));
-        runs.add(new Run(2, "Morning run", LocalDateTime.now(), LocalDateTime.now().plus(30, ChronoUnit.MINUTES), 3,
-                Location.INDOOR));
-    }
-
-    @GetMapping("/hello")
-    String home() {
-        return "hello world!";
-    }
-
 }
