@@ -3,10 +3,12 @@ package com.github.lkang172.run;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
 import com.github.lkang172.run.RunNotFoundException;
 import java.time.LocalDateTime;
 
-import jakarta.annotation.PostConstruct;
+import jakarta.annotation.*;
+import jakarta.validation.*;
 
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -28,6 +30,7 @@ public class RunController {
         return runRepository.findAll();
     }
 
+    // get
     @GetMapping("/{id}")
     Run findById(@PathVariable Integer id) {
         Optional<Run> run = runRepository.findById(id);
@@ -47,7 +50,7 @@ public class RunController {
     // put
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @PutMapping("/{id}")
-    void update(@RequestBody Run run, Integer id) {
+    void update(@Valid @RequestBody Run run, Integer id) {
         runRepository.update(run, id);
     }
 
