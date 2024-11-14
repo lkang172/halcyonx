@@ -8,12 +8,13 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 
 import com.github.lkang172.run.Location;
 import com.github.lkang172.run.Run;
 
-@SpringBootApplication(scanBasePackages = "com.github.lkang172")
+@SpringBootApplication(scanBasePackages = "com.github.lkang172", exclude = { DataSourceAutoConfiguration.class })
 public class HalcyonxApplication {
 
 	private static final Logger log = LoggerFactory.getLogger(HalcyonxApplication.class);
