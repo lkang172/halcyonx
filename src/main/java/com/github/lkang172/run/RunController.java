@@ -1,9 +1,11 @@
 package com.github.lkang172.run;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.bind.annotation.PathVariable;
 import java.time.LocalDateTime;
 
@@ -30,6 +32,10 @@ public class RunController {
 
     @GetMapping("/{id}")
     Run findById(@PathVariable Integer id) {
-        return runRepository.findById(id);
+        Run run = runRepository.findById(id);
+        if (run == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+        return run;
     }
 }
