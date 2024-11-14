@@ -64,4 +64,8 @@ public class RunRepository {
                 .query(Run.class).list();
     }
 
+    public void saveAll(List<Run> runs) {
+        runs.stream().forEach(this::create);
+    }
+
 }
