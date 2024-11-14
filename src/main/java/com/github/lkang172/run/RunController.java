@@ -9,6 +9,7 @@ import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import java.time.LocalDateTime;
 
@@ -17,6 +18,7 @@ import jakarta.annotation.PostConstruct;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/runs")
@@ -35,11 +37,11 @@ public class RunController {
 
     @GetMapping("/{id}")
     Run findById(@PathVariable Integer id) {
-        Run run = runRepository.findById(id);
-        if (run == null) {
+        Optional<Run> run = runRepository.findById(id);
+        if (run.isEmpty()) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
-        return run;
+        return run.get();
     }
 
     // post
@@ -49,7 +51,12 @@ public class RunController {
         runRepository.create(run);
     }
 
-    // get
+    // put
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @PutMapping("/{id}")
+    void update(@RequestBody Run run, Integer id) {
+        runRepository.update(run, id);
+    }
 
     // delete
 }
