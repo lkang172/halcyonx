@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import java.time.LocalDateTime;
 
 import jakarta.annotation.PostConstruct;
@@ -38,4 +41,15 @@ public class RunController {
         }
         return run;
     }
+
+    // post
+    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping("")
+    void create(@RequestBody Run run) {
+        runRepository.create(run);
+    }
+
+    // get
+
+    // delete
 }
