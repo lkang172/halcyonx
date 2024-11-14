@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Bean;
 import com.github.lkang172.run.Location;
 import com.github.lkang172.run.Run;
 
-@SpringBootApplication(scanBasePackages = "com.github.lkang172", exclude = { DataSourceAutoConfiguration.class })
+@SpringBootApplication(scanBasePackages = "com.github.lkang172")
 public class HalcyonxApplication {
 
 	private static final Logger log = LoggerFactory.getLogger(HalcyonxApplication.class);
